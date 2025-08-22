@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-	"name": "Localstack Ubuntu",
+	"name": "Ubuntu",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/base:noble",
 	
@@ -35,7 +35,6 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"docker.docker",
 				"yzhang.markdown-all-in-one",
 				"mechatroner.rainbow-csv"
 			]

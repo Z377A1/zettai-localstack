@@ -1,1 +1,6 @@
-/volume
+# Python environment
+/.venv
+
+# S3 files
+/docs/s3/data/*
+!/docs/s3/data/.git*

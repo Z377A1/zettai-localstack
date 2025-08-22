@@ -1,52 +1,47 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-	"name": "LocalStack DinD setup",
-	"image": "mcr.microsoft.com/devcontainers/base:jammy",
-
-	"remoteEnv": {
-		// Activate LocalStack Pro: https://docs.localstack.cloud/getting-started/auth-token/
-		"LOCALSTACK_AUTH_TOKEN": "${localEnv:LOCALSTACK_AUTH_TOKEN}",  // required for Pro, not processed via template due to security reasons
-		"LOCALSTACK_API_KEY": "${localEnv:LOCALSTACK_API_KEY}",
-		// LocalStack configuration: https://docs.localstack.cloud/references/configuration/
-		"ACTIVATE_PRO": false,
-		"DEBUG": false,
-		"LS_LOG": "info",
-		"PERSISTENCE": true,
-		"AWS_ENDPOINT_URL": "http://localhost.localstack.cloud:4566",
-		"AUTO_LOAD_POD": " ",
-		"ENFORCE_IAM": false,
-		"AWS_REGION": "us-east-1",
-		"AWS_DEFAULT_REGION": "us-east-1",
-		"IMAGE_NAME": "localstack/localstack-pro:latest",
-		"LOCALSTACK_VOLUME_DIR": "/data"
-	},
-
-	// 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
+	"name": "Localstack Ubuntu",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:noble",
+	
+	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
-		"ghcr.io/localstack/devcontainer-feature/localstack-cli:latest": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"azureDnsAutoDetection": true,
+			"installDockerBuildx": true,
+			"installDockerComposeSwitch": true,
 			"version": "latest",
-			"awslocal": true,  // if true, add in features manually: ghcr.io/devcontainers/features/aws-cli
-			"cdklocal": true,  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/aws-cdk
-			"pulumilocal": true,  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/pulumi
-			"samlocal": true,  // if true, add in features manually: ghcr.io/customink/codespaces-features/sam-cli
-			"tflocal": true  // if true, add in features manually: ghcr.io/devcontainers-contrib/features/terraform-asdf
+			"dockerDashComposeVersion": "v2"
+		},
+		"ghcr.io/devcontainers/features/aws-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/localstack/devcontainer-feature/localstack-cli:0": {
+			"awslocal": true,
+			"version": "latest"
 		}
 	},
 
-	// 👇 Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "type localstack; true && localstack start -d || true",
-	"mounts": [
-		{
-			// to persist build data and images
-			"source": "dind-var-lib-docker",
-			"target": "/var/lib/docker",
-			"type": "volume"
-		}, 
-		{ 
-			"source": "./.volume",
-			"target": "/data",
-			"type": "bind",
-			"consistency": "cached"
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [4566],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "./.devcontainer/scripts/install-deps.sh",
+
+	"postStartCommand": "./.devcontainer/scripts/start.sh",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"docker.docker",
+				"yzhang.markdown-all-in-one",
+				"mechatroner.rainbow-csv"
+			]
 		}
-	]
+	}
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
 }

@@ -2,7 +2,7 @@
 
 set -e
 
-# Stop localstack
+# Stop LocalStack
 localstack stop
 
-echo "Localstack stopped!"
+echo "LocalStack stopped!"

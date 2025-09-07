@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Calculate S3 Object Storage costs for Hetzner vs Cloudflare R2
-
 set -e
 
+# Tail LocalStack logs
+echo "Tailing LocalStack logs..."
 localstack logs -f

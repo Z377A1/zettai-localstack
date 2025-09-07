@@ -1,6 +1,7 @@
 # Python environment
 /.venv
 
-# S3 files
-/docs/s3/data/*
-!/docs/s3/data/.git*
+### Stacks ###
+# S3
+/stacks/s3/data/*
+!/stacks/s3/data/.git*

@@ -1,28 +1,24 @@
-# Localstack Workspace
+# LocalStack Workspace
 
-This repository contains scripts and documentation for working with S3-compatible storage and related utilities.
+This repository contains scripts and documentation for working with LocalStack and related utilities.
 
 ## Structure
 
-- `calculate-s3.sh`: Shell script for S3 calculations.
-- `logs-tail.sh`: Shell script for tailing logs.
-- `docs/s3/calculate.py`: Python script for S3 calculations.
-- `docs/s3/s3-compatibilty.md`: Documentation on S3 compatibility.
-- `docs/s3/data/`: Contains CSV data files for S3 cost and breakeven analysis.
+-   `logs-tail.sh`: Shell script for tailing logs.
+-   `stacks/<stack>/docs/<stack>-compatibilty.md`: Documentation on stack compatibility.
+-   `stacks/<stack>/data/`: Stack sync data directory.
 
 ## Usage
 
-- Run shell scripts directly from the root directory:
-  ```bash
-  ./calculate-s3.sh
-  ./logs-tail.sh
-  ```
-- Python scripts are located in `docs/s3/`.
+-   Run shell scripts directly from the root directory:
+    ```bash
+    ./logs-tail.sh
+    ```
+-   Python scripts msut be located in `stacks/<stack>/`.
 
 ## Data
 
-- `hetzner_vs_r2_breakeven.csv`: Breakeven analysis between Hetzner and R2.
-- `hetzner_vs_r2_examples.csv`: Example data comparing Hetzner and R2.
+-   `stacks/<stack>/data/`
 
 ## License
 

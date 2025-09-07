@@ -5,3 +5,5 @@
 # S3
 /stacks/s3/data/*
 !/stacks/s3/data/.git*
+/stacks/s3/example/updated*
+/stacks/s3/example/example
